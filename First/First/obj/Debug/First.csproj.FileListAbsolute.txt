@@ -4,3 +4,6 @@ C:\Users\gguad\Documents\GitHub\First\First\First\bin\First.pdb
 C:\Users\gguad\Documents\GitHub\First\First\First\obj\Debug\First.csprojResolveAssemblyReference.cache
 C:\Users\gguad\Documents\GitHub\First\First\First\obj\Debug\First.dll
 C:\Users\gguad\Documents\GitHub\First\First\First\obj\Debug\First.pdb
+C:\Users\gguad\Documents\GitHub\First\First\First\bin\Premotion.AspNet.AppHarbor.Integration.dll
+C:\Users\gguad\Documents\GitHub\First\First\First\bin\Premotion.AspNet.AppHarbor.Integration.pdb
+C:\Users\gguad\Documents\GitHub\First\First\First\bin\Premotion.AspNet.AppHarbor.Integration.xml

@@ -9,7 +9,7 @@ namespace First
     /// <summary>
     /// Summary description for First
     /// </summary>
-    [WebService(Namespace = "http://firt.guadanhim/")]
+    [WebService(Namespace = "http://first-41.apphb.com/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
