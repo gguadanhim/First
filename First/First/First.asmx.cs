@@ -16,11 +16,29 @@ namespace First
     // [System.Web.Script.Services.ScriptService]
     public class First : System.Web.Services.WebService
     {
+        private ControleJogadores iControleJogadores;
+
+        public First()
+        {
+            iControleJogadores = new ControleJogadores();
+        }
 
         [WebMethod]
         public string HelloWorld()
         {
             return "Hello World";
+        }
+
+        [WebMethod]
+        public Boolean CadastrarJogador(String asNome)
+        {
+            return iControleJogadores.cadastrarJogador(asNome);
+        }
+
+        [WebMethod]
+        public List<Jogador> BuscarJogadores()
+        {
+            return iControleJogadores.getJogadores();
         }
     }
 }

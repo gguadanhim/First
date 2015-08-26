@@ -7,3 +7,7 @@ C:\Users\gguad\Documents\GitHub\First\First\First\obj\Debug\First.pdb
 C:\Users\gguad\Documents\GitHub\First\First\First\bin\Premotion.AspNet.AppHarbor.Integration.dll
 C:\Users\gguad\Documents\GitHub\First\First\First\bin\Premotion.AspNet.AppHarbor.Integration.pdb
 C:\Users\gguad\Documents\GitHub\First\First\First\bin\Premotion.AspNet.AppHarbor.Integration.xml
+C:\Users\gguad\Documents\GitHub\First\First\First\bin\EntityFramework.dll
+C:\Users\gguad\Documents\GitHub\First\First\First\bin\EntityFramework.SqlServer.dll
+C:\Users\gguad\Documents\GitHub\First\First\First\bin\EntityFramework.xml
+C:\Users\gguad\Documents\GitHub\First\First\First\bin\EntityFramework.SqlServer.xml

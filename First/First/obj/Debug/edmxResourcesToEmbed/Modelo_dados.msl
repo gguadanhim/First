@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Modelo_dadosStoreContainer" CdmEntityContainer="Modelo_dadosContainer">
+    <EntitySetMapping Name="JogadorSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo_dados.Jogador)">
+        <MappingFragment StoreEntitySet="JogadorSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
