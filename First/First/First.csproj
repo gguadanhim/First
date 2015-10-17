@@ -75,12 +75,24 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Amigos.cs">
+      <DependentUpon>Modelo_dados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Campo.cs">
+      <DependentUpon>Modelo_dados.tt</DependentUpon>
+    </Compile>
     <Compile Include="ControleJogadores.cs" />
     <Compile Include="First.asmx.cs">
       <DependentUpon>First.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Jogador.cs">
+      <DependentUpon>Modelo_dados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JogadoresTime.cs">
+      <DependentUpon>Modelo_dados.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JogadorPosicao.cs">
       <DependentUpon>Modelo_dados.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo_dados.Context.cs">
@@ -98,7 +110,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Modelo_dados.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Posicao.cs">
+      <DependentUpon>Modelo_dados.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Time.cs">
+      <DependentUpon>Modelo_dados.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

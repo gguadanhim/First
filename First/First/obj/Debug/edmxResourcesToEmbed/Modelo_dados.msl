@@ -9,5 +9,59 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AmigosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo_dados.Amigos)">
+        <MappingFragment StoreEntitySet="AmigosSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="JogadorId" ColumnName="JogadorId" />
+          <ScalarProperty Name="AmigoId" ColumnName="AmigoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CampoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo_dados.Campo)">
+        <MappingFragment StoreEntitySet="CampoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PosicaoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo_dados.Posicao)">
+        <MappingFragment StoreEntitySet="PosicaoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="CampoId" ColumnName="CampoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JogadorPosicaoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo_dados.JogadorPosicao)">
+        <MappingFragment StoreEntitySet="JogadorPosicaoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="JogadorId" ColumnName="JogadorId" />
+          <ScalarProperty Name="PosicaoId" ColumnName="PosicaoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TimeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo_dados.Time)">
+        <MappingFragment StoreEntitySet="TimeSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="CampoId" ColumnName="CampoId" />
+          <ScalarProperty Name="Jogador_proprietarioId" ColumnName="Jogador_proprietarioId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JogadoresTimeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo_dados.JogadoresTime)">
+        <MappingFragment StoreEntitySet="JogadoresTimeSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TimeId" ColumnName="TimeId" />
+          <ScalarProperty Name="JogadorId" ColumnName="JogadorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

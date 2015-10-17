@@ -5,7 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a64e9296a3bc485881f9c06f20ef667b" Name="Diagram1" >
-        <EntityTypeShape EntityType="Modelo_dados.Jogador" Width="1.5" PointX="0.625" PointY="0.5" />
+        <EntityTypeShape EntityType="Modelo_dados.Jogador" Width="1.5" PointX="0.625" PointY="3.125" />
+        <EntityTypeShape EntityType="Modelo_dados.Amigos" Width="1.5" PointX="0.625" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="Modelo_dados.JogadorAmigos" />
+        <EntityTypeShape EntityType="Modelo_dados.Campo" Width="1.5" PointX="8.75" PointY="0.5" />
+        <EntityTypeShape EntityType="Modelo_dados.Posicao" Width="1.5" PointX="8.75" PointY="2.875" />
+        <AssociationConnector Association="Modelo_dados.CampoPosicao" />
+        <AssociationConnector Association="Modelo_dados.JogadorAmigos1" />
+        <EntityTypeShape EntityType="Modelo_dados.JogadorPosicao" Width="1.5" PointX="5.75" PointY="4" />
+        <AssociationConnector Association="Modelo_dados.JogadorJogadorPosicao" />
+        <AssociationConnector Association="Modelo_dados.PosicaoJogadorPosicao" />
+        <EntityTypeShape EntityType="Modelo_dados.Time" Width="1.5" PointX="5.375" PointY="0.625" />
+        <AssociationConnector Association="Modelo_dados.CampoTime" />
+        <AssociationConnector Association="Modelo_dados.JogadorTime" />
+        <EntityTypeShape EntityType="Modelo_dados.JogadoresTime" Width="1.5" PointX="2.875" PointY="0.75" />
+        <AssociationConnector Association="Modelo_dados.TimeJogadoresTime" />
+        <AssociationConnector Association="Modelo_dados.JogadorJogadoresTime" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

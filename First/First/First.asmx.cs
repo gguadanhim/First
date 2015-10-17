@@ -36,9 +36,44 @@ namespace First
         }
 
         [WebMethod]
+        public Boolean CadastrarCampo(String asNome)
+        {
+            return iControleJogadores.cadastrarCampo(asNome);
+        }
+
+        [WebMethod]
+        public Boolean CadastrarPosicao(String asNome, int aiTipoCampo)
+        {
+            return iControleJogadores.cadastrarPosicao(asNome, aiTipoCampo);
+        }
+
+        [WebMethod]
+        public Boolean VincularJogadorPosicao(int aijogador, int aiPosicao)
+        {
+            return iControleJogadores.vincularJogadorPosicao(aijogador, aiPosicao);
+        }
+
+        [WebMethod]
+        public Boolean CadastrarTime(string asNome, int aiTipoCampo, int aiJogador)
+        {
+            return iControleJogadores.criarTime(asNome, aiTipoCampo, aiJogador);
+        }
+
+        [WebMethod]
+        public Boolean VincularJogadorTime(int aiJogador, int aiTime)
+        {
+            return iControleJogadores.vincularJogadorTime(aiJogador, aiTime);
+        }
+        /*[WebMethod]
         public List<Jogador> BuscarJogadores()
         {
             return iControleJogadores.getJogadores();
-        }
+        }*/
+
+        /*[WebMethod]
+        public List<Campo> BuscarCampos()
+        {
+            return iControleJogadores.getCampos();
+        }*/
     }
 }

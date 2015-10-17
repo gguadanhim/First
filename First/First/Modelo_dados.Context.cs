@@ -26,5 +26,11 @@ namespace First
         }
     
         public virtual DbSet<Jogador> JogadorSet { get; set; }
+        public virtual DbSet<Amigos> AmigosSet { get; set; }
+        public virtual DbSet<Campo> CampoSet { get; set; }
+        public virtual DbSet<Posicao> PosicaoSet { get; set; }
+        public virtual DbSet<JogadorPosicao> JogadorPosicaoSet { get; set; }
+        public virtual DbSet<Time> TimeSet { get; set; }
+        public virtual DbSet<JogadoresTime> JogadoresTimeSet { get; set; }
     }
 }

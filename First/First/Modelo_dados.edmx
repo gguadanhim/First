@@ -7,6 +7,48 @@
     <Schema Namespace="Modelo_dados.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="Modelo_dadosStoreContainer">
     <EntitySet Name="JogadorSet" EntityType="Modelo_dados.Store.JogadorSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AmigosSet" EntityType="Modelo_dados.Store.AmigosSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CampoSet" EntityType="Modelo_dados.Store.CampoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PosicaoSet" EntityType="Modelo_dados.Store.PosicaoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="JogadorPosicaoSet" EntityType="Modelo_dados.Store.JogadorPosicaoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TimeSet" EntityType="Modelo_dados.Store.TimeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="JogadoresTimeSet" EntityType="Modelo_dados.Store.JogadoresTimeSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="JogadorAmigos" Association="Modelo_dados.Store.JogadorAmigos">
+      <End Role="Jogador" EntitySet="JogadorSet" />
+      <End Role="Amigos" EntitySet="AmigosSet" />
+    </AssociationSet>
+    <AssociationSet Name="CampoPosicao" Association="Modelo_dados.Store.CampoPosicao">
+      <End Role="Campo" EntitySet="CampoSet" />
+      <End Role="Posicao" EntitySet="PosicaoSet" />
+    </AssociationSet>
+    <AssociationSet Name="JogadorAmigos1" Association="Modelo_dados.Store.JogadorAmigos1">
+      <End Role="Jogador" EntitySet="JogadorSet" />
+      <End Role="Amigos" EntitySet="AmigosSet" />
+    </AssociationSet>
+    <AssociationSet Name="JogadorJogadorPosicao" Association="Modelo_dados.Store.JogadorJogadorPosicao">
+      <End Role="Jogador" EntitySet="JogadorSet" />
+      <End Role="JogadorPosicao" EntitySet="JogadorPosicaoSet" />
+    </AssociationSet>
+    <AssociationSet Name="PosicaoJogadorPosicao" Association="Modelo_dados.Store.PosicaoJogadorPosicao">
+      <End Role="Posicao" EntitySet="PosicaoSet" />
+      <End Role="JogadorPosicao" EntitySet="JogadorPosicaoSet" />
+    </AssociationSet>
+    <AssociationSet Name="CampoTime" Association="Modelo_dados.Store.CampoTime">
+      <End Role="Campo" EntitySet="CampoSet" />
+      <End Role="Time" EntitySet="TimeSet" />
+    </AssociationSet>
+    <AssociationSet Name="JogadorTime" Association="Modelo_dados.Store.JogadorTime">
+      <End Role="Jogador" EntitySet="JogadorSet" />
+      <End Role="Time" EntitySet="TimeSet" />
+    </AssociationSet>
+    <AssociationSet Name="TimeJogadoresTime" Association="Modelo_dados.Store.TimeJogadoresTime">
+      <End Role="Time" EntitySet="TimeSet" />
+      <End Role="JogadoresTime" EntitySet="JogadoresTimeSet" />
+    </AssociationSet>
+    <AssociationSet Name="JogadorJogadoresTime" Association="Modelo_dados.Store.JogadorJogadoresTime">
+      <End Role="Jogador" EntitySet="JogadorSet" />
+      <End Role="JogadoresTime" EntitySet="JogadoresTimeSet" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="JogadorSet">
     <Key>
@@ -15,12 +57,211 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="AmigosSet">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="JogadorId" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JogadorId" Type="int" Nullable="false" />
+    <Property Name="AmigoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CampoSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PosicaoSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CampoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JogadorPosicaoSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JogadorId" Type="int" Nullable="false" />
+    <Property Name="PosicaoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TimeSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CampoId" Type="int" Nullable="false" />
+    <Property Name="Jogador_proprietarioId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JogadoresTimeSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TimeId" Type="int" Nullable="false" />
+    <Property Name="JogadorId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="JogadorAmigos">
+    <End Role="Jogador" Type="Modelo_dados.Store.JogadorSet" Multiplicity="1" />
+    <End Role="Amigos" Type="Modelo_dados.Store.AmigosSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jogador">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Amigos">
+        <PropertyRef Name="JogadorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CampoPosicao">
+    <End Role="Campo" Type="Modelo_dados.Store.CampoSet" Multiplicity="1" />
+    <End Role="Posicao" Type="Modelo_dados.Store.PosicaoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Posicao">
+        <PropertyRef Name="CampoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="JogadorAmigos1">
+    <End Role="Jogador" Type="Modelo_dados.Store.JogadorSet" Multiplicity="1" />
+    <End Role="Amigos" Type="Modelo_dados.Store.AmigosSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jogador">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Amigos">
+        <PropertyRef Name="AmigoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="JogadorJogadorPosicao">
+    <End Role="Jogador" Type="Modelo_dados.Store.JogadorSet" Multiplicity="1" />
+    <End Role="JogadorPosicao" Type="Modelo_dados.Store.JogadorPosicaoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jogador">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JogadorPosicao">
+        <PropertyRef Name="JogadorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PosicaoJogadorPosicao">
+    <End Role="Posicao" Type="Modelo_dados.Store.PosicaoSet" Multiplicity="1" />
+    <End Role="JogadorPosicao" Type="Modelo_dados.Store.JogadorPosicaoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Posicao">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JogadorPosicao">
+        <PropertyRef Name="PosicaoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CampoTime">
+    <End Role="Campo" Type="Modelo_dados.Store.CampoSet" Multiplicity="1" />
+    <End Role="Time" Type="Modelo_dados.Store.TimeSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Time">
+        <PropertyRef Name="CampoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="JogadorTime">
+    <End Role="Jogador" Type="Modelo_dados.Store.JogadorSet" Multiplicity="1" />
+    <End Role="Time" Type="Modelo_dados.Store.TimeSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jogador">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Time">
+        <PropertyRef Name="Jogador_proprietarioId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TimeJogadoresTime">
+    <End Role="Time" Type="Modelo_dados.Store.TimeSet" Multiplicity="1" />
+    <End Role="JogadoresTime" Type="Modelo_dados.Store.JogadoresTimeSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Time">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JogadoresTime">
+        <PropertyRef Name="TimeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="JogadorJogadoresTime">
+    <End Role="Jogador" Type="Modelo_dados.Store.JogadorSet" Multiplicity="1" />
+    <End Role="JogadoresTime" Type="Modelo_dados.Store.JogadoresTimeSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jogador">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="JogadoresTime">
+        <PropertyRef Name="JogadorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Modelo_dados" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="Modelo_dadosContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="JogadorSet" EntityType="Modelo_dados.Jogador" />
+          <EntitySet Name="AmigosSet" EntityType="Modelo_dados.Amigos" />
+          <AssociationSet Name="JogadorAmigos" Association="Modelo_dados.JogadorAmigos">
+            <End Role="Jogador" EntitySet="JogadorSet" />
+            <End Role="Amigos" EntitySet="AmigosSet" />
+          </AssociationSet>
+          <EntitySet Name="CampoSet" EntityType="Modelo_dados.Campo" />
+          <EntitySet Name="PosicaoSet" EntityType="Modelo_dados.Posicao" />
+          <AssociationSet Name="CampoPosicao" Association="Modelo_dados.CampoPosicao">
+            <End Role="Campo" EntitySet="CampoSet" />
+            <End Role="Posicao" EntitySet="PosicaoSet" />
+          </AssociationSet>
+          <AssociationSet Name="JogadorAmigos1" Association="Modelo_dados.JogadorAmigos1">
+            <End Role="Jogador" EntitySet="JogadorSet" />
+            <End Role="Amigos" EntitySet="AmigosSet" />
+          </AssociationSet>
+          <EntitySet Name="JogadorPosicaoSet" EntityType="Modelo_dados.JogadorPosicao" />
+          <AssociationSet Name="JogadorJogadorPosicao" Association="Modelo_dados.JogadorJogadorPosicao">
+            <End Role="Jogador" EntitySet="JogadorSet" />
+            <End Role="JogadorPosicao" EntitySet="JogadorPosicaoSet" />
+          </AssociationSet>
+          <AssociationSet Name="PosicaoJogadorPosicao" Association="Modelo_dados.PosicaoJogadorPosicao">
+            <End Role="Posicao" EntitySet="PosicaoSet" />
+            <End Role="JogadorPosicao" EntitySet="JogadorPosicaoSet" />
+          </AssociationSet>
+          <EntitySet Name="TimeSet" EntityType="Modelo_dados.Time" />
+          <AssociationSet Name="CampoTime" Association="Modelo_dados.CampoTime">
+            <End Role="Campo" EntitySet="CampoSet" />
+            <End Role="Time" EntitySet="TimeSet" />
+          </AssociationSet>
+          <AssociationSet Name="JogadorTime" Association="Modelo_dados.JogadorTime">
+            <End Role="Jogador" EntitySet="JogadorSet" />
+            <End Role="Time" EntitySet="TimeSet" />
+          </AssociationSet>
+          <EntitySet Name="JogadoresTimeSet" EntityType="Modelo_dados.JogadoresTime" />
+          <AssociationSet Name="TimeJogadoresTime" Association="Modelo_dados.TimeJogadoresTime">
+            <End Role="Time" EntitySet="TimeSet" />
+            <End Role="JogadoresTime" EntitySet="JogadoresTimeSet" />
+          </AssociationSet>
+          <AssociationSet Name="JogadorJogadoresTime" Association="Modelo_dados.JogadorJogadoresTime">
+            <End Role="Jogador" EntitySet="JogadorSet" />
+            <End Role="JogadoresTime" EntitySet="JogadoresTimeSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Jogador">
           <Key>
@@ -28,7 +269,182 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" Nullable="false" />
+          <NavigationProperty Name="Amigos" Relationship="Modelo_dados.JogadorAmigos" FromRole="Jogador" ToRole="Amigos" />
+          <NavigationProperty Name="Amigos1" Relationship="Modelo_dados.JogadorAmigos1" FromRole="Jogador" ToRole="Amigos" />
+          <NavigationProperty Name="JogadorPosicao" Relationship="Modelo_dados.JogadorJogadorPosicao" FromRole="Jogador" ToRole="JogadorPosicao" />
+          <NavigationProperty Name="Time" Relationship="Modelo_dados.JogadorTime" FromRole="Jogador" ToRole="Time" />
+          <NavigationProperty Name="JogadoresTime" Relationship="Modelo_dados.JogadorJogadoresTime" FromRole="Jogador" ToRole="JogadoresTime" />
         </EntityType>
+        <EntityType Name="Amigos">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="JogadorId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Jogador" Relationship="Modelo_dados.JogadorAmigos" FromRole="Amigos" ToRole="Jogador" />
+          <Property Name="JogadorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Amigo" Relationship="Modelo_dados.JogadorAmigos1" FromRole="Amigos" ToRole="Jogador" />
+          <Property Name="AmigoId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="JogadorAmigos">
+          <End Type="Modelo_dados.Jogador" Role="Jogador" Multiplicity="1" />
+          <End Type="Modelo_dados.Amigos" Role="Amigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jogador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Amigos">
+              <PropertyRef Name="JogadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Campo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" />
+          <NavigationProperty Name="Posicao" Relationship="Modelo_dados.CampoPosicao" FromRole="Campo" ToRole="Posicao" />
+          <NavigationProperty Name="Time" Relationship="Modelo_dados.CampoTime" FromRole="Campo" ToRole="Time" />
+        </EntityType>
+        <EntityType Name="Posicao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" />
+          <NavigationProperty Name="Campo" Relationship="Modelo_dados.CampoPosicao" FromRole="Posicao" ToRole="Campo" />
+          <Property Name="CampoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="JogadorPosicao" Relationship="Modelo_dados.PosicaoJogadorPosicao" FromRole="Posicao" ToRole="JogadorPosicao" />
+        </EntityType>
+        <Association Name="CampoPosicao">
+          <End Type="Modelo_dados.Campo" Role="Campo" Multiplicity="1" />
+          <End Type="Modelo_dados.Posicao" Role="Posicao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Posicao">
+              <PropertyRef Name="CampoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JogadorAmigos1">
+          <End Type="Modelo_dados.Jogador" Role="Jogador" Multiplicity="1" />
+          <End Type="Modelo_dados.Amigos" Role="Amigos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jogador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Amigos">
+              <PropertyRef Name="AmigoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="JogadorPosicao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Jogador" Relationship="Modelo_dados.JogadorJogadorPosicao" FromRole="JogadorPosicao" ToRole="Jogador" />
+          <Property Name="JogadorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Posicao" Relationship="Modelo_dados.PosicaoJogadorPosicao" FromRole="JogadorPosicao" ToRole="Posicao" />
+          <Property Name="PosicaoId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="JogadorJogadorPosicao">
+          <End Type="Modelo_dados.Jogador" Role="Jogador" Multiplicity="1" />
+          <End Type="Modelo_dados.JogadorPosicao" Role="JogadorPosicao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jogador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JogadorPosicao">
+              <PropertyRef Name="JogadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PosicaoJogadorPosicao">
+          <End Type="Modelo_dados.Posicao" Role="Posicao" Multiplicity="1" />
+          <End Type="Modelo_dados.JogadorPosicao" Role="JogadorPosicao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posicao">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JogadorPosicao">
+              <PropertyRef Name="PosicaoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Time">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" />
+          <NavigationProperty Name="Campo" Relationship="Modelo_dados.CampoTime" FromRole="Time" ToRole="Campo" />
+          <Property Name="CampoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="JogadorProprietario" Relationship="Modelo_dados.JogadorTime" FromRole="Time" ToRole="Jogador" />
+          <Property Name="Jogador_proprietarioId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="JogadoresTime" Relationship="Modelo_dados.TimeJogadoresTime" FromRole="Time" ToRole="JogadoresTime" />
+        </EntityType>
+        <Association Name="CampoTime">
+          <End Type="Modelo_dados.Campo" Role="Campo" Multiplicity="1" />
+          <End Type="Modelo_dados.Time" Role="Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Time">
+              <PropertyRef Name="CampoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JogadorTime">
+          <End Type="Modelo_dados.Jogador" Role="Jogador" Multiplicity="1" />
+          <End Type="Modelo_dados.Time" Role="Time" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jogador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Time">
+              <PropertyRef Name="Jogador_proprietarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="JogadoresTime">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Time" Relationship="Modelo_dados.TimeJogadoresTime" FromRole="JogadoresTime" ToRole="Time" />
+          <Property Name="TimeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Jogador" Relationship="Modelo_dados.JogadorJogadoresTime" FromRole="JogadoresTime" ToRole="Jogador" />
+          <Property Name="JogadorId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="TimeJogadoresTime">
+          <End Type="Modelo_dados.Time" Role="Time" Multiplicity="1" />
+          <End Type="Modelo_dados.JogadoresTime" Role="JogadoresTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Time">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JogadoresTime">
+              <PropertyRef Name="TimeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JogadorJogadoresTime">
+          <End Type="Modelo_dados.Jogador" Role="Jogador" Multiplicity="1" />
+          <End Type="Modelo_dados.JogadoresTime" Role="JogadoresTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jogador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JogadoresTime">
+              <PropertyRef Name="JogadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -40,6 +456,60 @@
         <MappingFragment StoreEntitySet="JogadorSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Nome" ColumnName="Nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AmigosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo_dados.Amigos)">
+        <MappingFragment StoreEntitySet="AmigosSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="JogadorId" ColumnName="JogadorId" />
+          <ScalarProperty Name="AmigoId" ColumnName="AmigoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CampoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo_dados.Campo)">
+        <MappingFragment StoreEntitySet="CampoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PosicaoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo_dados.Posicao)">
+        <MappingFragment StoreEntitySet="PosicaoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="CampoId" ColumnName="CampoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JogadorPosicaoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo_dados.JogadorPosicao)">
+        <MappingFragment StoreEntitySet="JogadorPosicaoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="JogadorId" ColumnName="JogadorId" />
+          <ScalarProperty Name="PosicaoId" ColumnName="PosicaoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TimeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo_dados.Time)">
+        <MappingFragment StoreEntitySet="TimeSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="CampoId" ColumnName="CampoId" />
+          <ScalarProperty Name="Jogador_proprietarioId" ColumnName="Jogador_proprietarioId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JogadoresTimeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo_dados.JogadoresTime)">
+        <MappingFragment StoreEntitySet="JogadoresTimeSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TimeId" ColumnName="TimeId" />
+          <ScalarProperty Name="JogadorId" ColumnName="JogadorId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
